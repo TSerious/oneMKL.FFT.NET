@@ -1,0 +1,46 @@
+[*.cs]
+
+# SA1633: File should have header
+dotnet_diagnostic.SA1633.severity = none
+
+# SA1124: Do not use regions
+dotnet_diagnostic.SA1124.severity = suggestion
+
+# SA1200: Using directives should be placed correctly
+dotnet_diagnostic.SA1200.severity = none
+
+# SX1309: Field names should begin with underscore
+dotnet_diagnostic.SX1309.severity = none
+
+# SA1609: Property documentation should have value
+dotnet_diagnostic.SA1609.severity = none
+
+# SA1101: Prefix local calls with this
+dotnet_diagnostic.SA1101.severity = warning
+
+# SA1516: Elements should be separated by blank line
+dotnet_diagnostic.SA1516.severity = warning
+	
+# SA1027: Use tabs correctly
+dotnet_diagnostic.SA1027.severity = warning	
+
+# SA1309: Field names should not begin with underscore
+dotnet_diagnostic.SA1309.severity = warning
+
+# SA1310: Field names should not contain underscore
+dotnet_diagnostic.SA1310.severity = none
+
+# SA1600: Elements should be documented
+dotnet_diagnostic.SA1600.severity = none
+
+# SA1604: Element documentation should have summary
+dotnet_diagnostic.SA1604.severity = none
+
+# SA1602: Enumeration items should be documented
+dotnet_diagnostic.SA1602.severity = none
+
+# SA1615: Element return value should be documented
+dotnet_diagnostic.SA1615.severity = none
+
+# SA1611: Element parameters should be documented
+dotnet_diagnostic.SA1611.severity = none
