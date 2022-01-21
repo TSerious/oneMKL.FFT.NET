@@ -100,6 +100,16 @@ namespace oneMKL.FFT.NET
             return result;
         }
 
+        /// <summary>
+        /// Multiplies each element in <paramref name="data"/>
+        /// with <paramref name="scaleFactor"/>.
+        /// </summary>
+        /// <remarks>
+        /// It seems like DFTI.DftiSetValue(desc, DFTI.CONFIG_PARAM.BACKWARD_SCALE, scale_factor) doesn't work.
+        /// Instead the scaling can be done with this function.
+        /// </remarks>
+        /// <param name="data">The data.</param>
+        /// <param name="scaleFactor">The scale factor.</param>
         public static void Scale(ref double[] data, double scaleFactor)
         {
             for (int i = 0; i < data.Length; i++)

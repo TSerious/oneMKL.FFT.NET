@@ -44,3 +44,6 @@ dotnet_diagnostic.SA1615.severity = none
 
 # SA1611: Element parameters should be documented
 dotnet_diagnostic.SA1611.severity = none
+
+# SA1300: Element should begin with upper-case letter
+dotnet_diagnostic.SA1300.severity = none

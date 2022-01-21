@@ -1,6 +1,6 @@
-﻿using oneMKL.FFT.NET;
-using System;
+﻿using System;
 using System.Numerics;
+using oneMKL.FFT.NET;
 
 namespace Test
 {
