@@ -42,6 +42,7 @@ namespace Test
             /* Setup the scale factor */
             long transform_size = length;
             double scale_factor = 1.0 / transform_size;
+            // DFTI.DftiSetValue(desc, DFTI.CONFIG_PARAM.BACKWARD_SCALE, scale_factor); / * This doesn't work. */
             Console.WriteLine("Backward transform scale: " + scale_factor);
 
             /* Setup the transform parameters */
