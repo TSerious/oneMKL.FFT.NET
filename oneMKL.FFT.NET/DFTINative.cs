@@ -45,6 +45,12 @@ namespace oneMKL.FFT.NET
         internal static extern int DftiGetValue(IntPtr desc, int config_param, ref double config_val);
 
         /// <summary>
+        /// DFTI native DftiGetValue declaration.
+        /// </summary>
+        [DllImport("mkl_rt.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, SetLastError = false)]
+        internal static extern int DftiGetValue(IntPtr desc, int config_param, ref int config_val);
+
+        /// <summary>
         /// DFTI native DftiComputeForward declaration.
         /// </summary>
         [DllImport("mkl_rt.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, SetLastError = false)]

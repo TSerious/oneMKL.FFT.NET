@@ -280,6 +280,14 @@ namespace oneMKL.FFT.NET
         }
 
         /// <summary>
+        /// DFTI DftiGetValue wrapper.
+        /// </summary>
+        public static int DftiGetValue(IntPtr desc, DFTI.CONFIG_PARAM config_param, ref int config_val)
+        {
+            return DFTINative.DftiGetValue(desc, (int)config_param, ref config_val);
+        }
+
+        /// <summary>
         /// DFTI DftiCommitDescriptor wrapper.
         /// </summary>
         public static int DftiCommitDescriptor(IntPtr desc)
