@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+    <Copyright>Copyright © 2024, Bruker Daltonics GmbH &amp; Co. KG</Copyright>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://bitbucket.org/brukerdaltonicsspr/onemkl.fft.net</RepositoryUrl>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <VersionPrefix>1.0.1</VersionPrefix>
+  </PropertyGroup>
+</Project>
