@@ -1,0 +1,10 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <!-- Copy native DLLs to output directory based on platform -->
+    <Content Condition="'$(Platform)' == 'x64' or ('$(Platform)' == 'AnyCPU' and '$(Prefer32Bit)' != 'true')" 
+             Include="$(MSBuildThisFileDirectory)..\runtimes\win-x64\native\*.dll">
+      <Link>%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

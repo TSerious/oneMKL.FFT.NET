@@ -12,7 +12,7 @@ namespace oneMKL.FFT.NET
         /// DFTI native DftiCreateDescriptor declaration.
         /// </summary>
         [DllImport("mkl_rt.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, SetLastError = false)]
-        internal static extern int DftiCreateDescriptor(ref IntPtr desc, int precision, int domain, int dimention, int length);
+        internal static extern int DftiCreateDescriptor(ref IntPtr desc, int precision, int domain, int dimension, int length);
 
         /// <summary>
         /// DFTI native DftiCommitDescriptor declaration.
