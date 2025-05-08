@@ -7,7 +7,7 @@
     <UseCommonOutputDirectory>true</UseCommonOutputDirectory>
     <OutputPath>bin\</OutputPath>
     <Version>1.0.0</Version>
-    <PackageReadmeFile>..\README.md</PackageReadmeFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -98,10 +98,12 @@
       <Pack>true</Pack>
       <PackagePath>runtimes\win-x64\native</PackagePath>
     </Content>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
 
-    <None Include="oneMKL.FFT.NET.targets"
-          Pack="true"
-          PackagePath="build" />
+    <None Include="oneMKL.FFT.NET.targets" Pack="true" PackagePath="build" />
   </ItemGroup>
 
   <ItemGroup>
