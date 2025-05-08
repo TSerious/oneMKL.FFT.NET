@@ -1,98 +1,103 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<Platforms>AnyCPU;x64;x86</Platforms>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Platforms>AnyCPU;x64;x86</Platforms>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.507">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
+  <ItemGroup>
+    <None Update="dlls\libiomp5md.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_avx.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_avx2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_avx512.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_core.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_def.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_intel_thread.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_mc.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_mc3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_rt.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_sequential.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_tbb_thread.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_vml_avx.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_vml_avx2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_vml_avx512.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_vml_cmpt.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_vml_def.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_vml_mc.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_vml_mc2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+    <None Update="dlls\mkl_vml_mc3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </None>
+  </ItemGroup>
 
-	<ItemGroup>
-		<None Update="dlls\libiomp5md.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_avx.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_avx2.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_avx512.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_core.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_def.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_intel_thread.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_mc.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_mc3.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_rt.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_sequential.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_tbb_thread.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_vml_avx.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_vml_avx2.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_vml_avx512.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_vml_cmpt.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_vml_def.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_vml_mc.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_vml_mc2.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-		<None Update="dlls\mkl_vml_mc3.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<TargetPath>%(Filename)%(Extension)</TargetPath>
-		</None>
-	</ItemGroup>
+  <ItemGroup>
+    <Content Include="dlls\*.dll">
+      <Pack>true</Pack>
+      <PackagePath>runtimes\win-x64\native</PackagePath>
+    </Content>
+
+    <None Include="oneMKL.FFT.NET.targets"
+          Pack="true"
+          PackagePath="build" />
+  </ItemGroup>
 
 </Project>

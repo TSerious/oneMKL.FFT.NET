@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup Condition="$(GeneratePackageOnBuild)">
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://bitbucket.org/brukerdaltonicsspr/onemkl.fft.net</PackageProjectUrl>
+    <Authors>oneMKL.FFT.NET contributors and Bruker employees</Authors>
+  </PropertyGroup>
+</Project>
