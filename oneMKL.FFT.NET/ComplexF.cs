@@ -5,7 +5,7 @@ namespace oneMKL.FFT.NET
     /// <summary>
     /// Complex number with single precision.
     /// </summary>
-    public struct ComplexF
+    public readonly struct ComplexF
     {
         /// <summary>
         /// Creates the number 0+0i.
