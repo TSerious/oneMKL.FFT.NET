@@ -46,7 +46,6 @@ on:
 
 env:
   Solution_Name: oneMKL.FFT.NET.sln                        # Replace with your solution name, i.e. MyWpfApp.sln.
-  Test_Project_Path: Test/Test.csproj                      # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
   DOTNET_CLI_TELEMETRY_OPTOUT: "true"
   NODEJS_INSTALL_DIR: "${{ runner.temp }}/.nodejs"
   DOTNET_INSTALL_DIR: "${{ runner.tool_cache }}/.dotnet"
