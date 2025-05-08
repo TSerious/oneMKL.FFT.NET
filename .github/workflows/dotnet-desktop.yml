@@ -95,7 +95,7 @@ jobs:
         id: set-version
         run: |
           VERSION=${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${{ env.patch }}
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_ENV
           echo "Full version: $VERSION"
 
   build:
