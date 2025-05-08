@@ -52,8 +52,9 @@ env:
 jobs:
   determine-version:
     name: Determine Application Version
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     outputs:
+      version: ${{ steps.determine-version.outputs.version }}
       sem-ver: ${{ steps.determine-version.outputs.GitVersion_SemVer }}
       assembly-sem-ver: ${{ steps.determine-version.outputs.GitVersion_AssemblySemVer }}
       assembly-sem-file-ver: ${{ steps.determine-version.outputs.GitVersion_AssemblySemFileVer }}
