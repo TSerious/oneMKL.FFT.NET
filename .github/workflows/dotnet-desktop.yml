@@ -44,43 +44,102 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  Solution_Name: oneMKL.FFT.NET.sln                        # Replace with your solution name, i.e. MyWpfApp.sln.
+  Test_Project_Path: Test/Test.csproj                      # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
+  DOTNET_CLI_TELEMETRY_OPTOUT: "true"
+  NODEJS_INSTALL_DIR: "${{ runner.temp }}/.nodejs"
+  DOTNET_INSTALL_DIR: "${{ runner.tool_cache }}/.dotnet"
+  BUILD_NUMBER: "${{ github.run_number }}"  # relevant for sem-file-ver from GitVersion (see ./GitVersion.yml)
+
 jobs:
+  determine-version:
+    name: Determine Application Version
+    runs-on: windows-latest
+    outputs:
+      sem-ver: ${{ steps.determine-version.outputs.GitVersion_SemVer }}
+      assembly-sem-ver: ${{ steps.determine-version.outputs.GitVersion_AssemblySemVer }}
+      assembly-sem-file-ver: ${{ steps.determine-version.outputs.GitVersion_AssemblySemFileVer }}
+      assembly-informational-version: ${{ steps.determine-version.outputs.GitVersion_InformationalVersion }}
+    steps:
+      - name: Install NodeJS
+        run: apk add nodejs npm
+
+      - name: Install GitVersion
+        uses: https://github.com/gittools/actions/gitversion/setup@v3.1.1
+        with:
+          versionSpec: '6.0.x'
+          preferLatestVersion: true
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: false
+
+      - name: Determine Version
+        id: determine-version
+        uses: https://github.com/gittools/actions/gitversion/execute@v3.1.1
+        with:
+          useConfigFile: true
 
   build:
-
     strategy:
       matrix:
-        configuration: [Debug, Release]
-
+        configuration: [Release]
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
-
-    env:
-      Solution_Name: oneMKL.FFT.NET.sln                        # Replace with your solution name, i.e. MyWpfApp.sln.
-      Test_Project_Path: Test/Test.csproj                      # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
-
     steps:
     - name: Checkout
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+    - name: Print version
+      run: |
+        echo "sem-ver: ${{ needs.determine-version.outputs.sem-ver }}"
+        echo "ass-ver: ${{ needs.determine-version.outputs.assembly-sem-ver }}"
+        echo "file-ver: ${{ needs.determine-version.outputs.assembly-sem-file-ver }} "
+        echo "info-ver: ${{ needs.determine-version.outputs.assembly-informational-version }} "
 
     # Install the .NET Core workload
-    - name: Install .NET Core
+    - name: Install .NET SDK
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
 
-    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v2
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        lfs: true
+          
+    - name: Restore
+      shell: pwsh
+      run: dotnet restore --no-cache --force oneMKL.FFT.NET\oneMKL.FFT.NET.csproj
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
       run: dotnet test
 
-    # Restore the application to populate the obj folder with RuntimeIdentifiers
-    - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
-      env:
-        Configuration: ${{ matrix.configuration }}
+    - name: Build Package
+      shell: pwsh
+      # Overview of the different versions: https://gist.github.com/jonlabelle/34993ee032c26420a0943b1c9d106cdc
+      run: |
+        dotnet build --no-restore`
+          oneMKL.FFT.NET/oneMKL.FFT.NET.csproj `
+          -p:Version=${{ needs.determine-version.outputs.assembly-sem-file-ver }} `
+          -p:FileVersion=${{ needs.determine-version.outputs.assembly-sem-file-ver }} `
+          -p:AssemblyVersion=${{ needs.determine-version.outputs.assembly-sem-file-ver }} `
+          -p:AssemblyInformationalVersion=${{ needs.determine-version.outputs.assembly-informational-version }} `
+          -p:PackageVersion=${{ needs.determine-version.outputs.assembly-sem-file-ver }} `
+          -p:Configuration=Release `
+          --warnaserror
+
+    - name: Upload NuGet Package
+      uses: actions/upload-artifact@v3
+      with:  
+        name: nuget-package
+        path: ./oneMKL.FFT.NET/bin/*.nupkg
+        if-no-files-found: error
+
+
