@@ -82,6 +82,20 @@ jobs:
         with:
           useConfigFile: true
 
+      - name: Read Directory.Build.props
+        id: props
+        run: |
+          MAJOR=$(grep -oP '<MajorVersion>\K[^<]+' Directory.Build.props)
+          MINOR=$(grep -oP '<MinorVersion>\K[^<]+' Directory.Build.props)
+          echo "MAJOR_VERSION=$MAJOR" >> $GITHUB_ENV
+          echo "MINOR_VERSION=$MINOR" >> $GITHUB_ENV
+
+      - name: Set Version
+        run: |
+          VERSION=${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${{ steps.gitversion.outputs.patch }}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Full version: $VERSION"
+
   build:
     needs: determine-version
     runs-on: windows-latest  # For a list of available runner types, refer to
@@ -94,6 +108,7 @@ jobs:
 
       - name: Print version
         run: |
+          echo "version: ${{ needs.determine-version.output.version}}"
           echo "sem-ver: ${{ needs.determine-version.outputs.sem-ver }}"
           echo "ass-ver: ${{ needs.determine-version.outputs.assembly-sem-ver }}"
           echo "file-ver: ${{ needs.determine-version.outputs.assembly-sem-file-ver }} "
@@ -121,11 +136,10 @@ jobs:
         run: |
           dotnet build `
             oneMKL.FFT.NET/oneMKL.FFT.NET.csproj `
-            -p:Version=${{ needs.determine-version.outputs.assembly-sem-file-ver }} `
-            -p:FileVersion=${{ needs.determine-version.outputs.assembly-sem-file-ver }} `
-            -p:AssemblyVersion=${{ needs.determine-version.outputs.assembly-sem-file-ver }} `
-            -p:AssemblyInformationalVersion=${{ needs.determine-version.outputs.assembly-informational-version }} `
-            -p:PackageVersion=${{ needs.determine-version.outputs.assembly-sem-file-ver }} `
+            -p:Version=${{ needs.determine-version.outputs.version }} `
+            -p:FileVersion=${{ needs.determine-version.outputs.version }} `
+            -p:AssemblyVersion=${{ needs.determine-version.outputs.version }} `
+            -p:PackageVersion=${{ needs.determine-version.outputs.version }} `
             -p:Configuration=Release `
             --warnaserror --no-restore
 
@@ -135,4 +149,8 @@ jobs:
           name: nuget-package
           path: ./oneMKL.FFT.NET/bin/*.nupkg
           if-no-files-found: error
+
+      - name: Publish Package
+        shell: pwsh
+        run: dotnet nuget push oneMKL.FFT.NET/bin/oneMKL.FFT.NET.*.nupkg --api-key ${{ secrets.NUGET_PACKAGE_TOKEN }} --source https://nuget.pkg.github.com/TSerious/index.json
 
