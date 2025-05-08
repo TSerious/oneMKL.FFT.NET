@@ -54,7 +54,7 @@ jobs:
     name: Determine Application Version
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.determine-version.outputs.version }}
+      version: ${{ steps.set-version.outputs.version }}
       sem-ver: ${{ steps.determine-version.outputs.GitVersion_SemVer }}
       assembly-sem-ver: ${{ steps.determine-version.outputs.GitVersion_AssemblySemVer }}
       assembly-sem-file-ver: ${{ steps.determine-version.outputs.GitVersion_AssemblySemFileVer }}
@@ -92,8 +92,9 @@ jobs:
           echo "MINOR_VERSION=$MINOR" >> $GITHUB_ENV
 
       - name: Set Version
+        id: set-version
         run: |
-          VERSION=${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${{ steps.gitversion.outputs.patch }}
+          VERSION=${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${{ env.patch }}
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "Full version: $VERSION"
 
@@ -109,7 +110,7 @@ jobs:
 
       - name: Print version
         run: |
-          echo "version: ${{ needs.determine-version.output.version}}"
+          echo "version: ${{ needs.determine-version.outputs.version}}"
           echo "sem-ver: ${{ needs.determine-version.outputs.sem-ver }}"
           echo "ass-ver: ${{ needs.determine-version.outputs.assembly-sem-ver }}"
           echo "file-ver: ${{ needs.determine-version.outputs.assembly-sem-file-ver }} "
@@ -138,9 +139,6 @@ jobs:
           dotnet build `
             oneMKL.FFT.NET/oneMKL.FFT.NET.csproj `
             -p:Version=${{ needs.determine-version.outputs.version }} `
-            -p:FileVersion=${{ needs.determine-version.outputs.version }} `
-            -p:AssemblyVersion=${{ needs.determine-version.outputs.version }} `
-            -p:PackageVersion=${{ needs.determine-version.outputs.version }} `
             -p:Configuration=Release `
             --warnaserror --no-restore
 
