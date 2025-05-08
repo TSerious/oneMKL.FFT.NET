@@ -59,9 +59,6 @@ jobs:
       assembly-sem-file-ver: ${{ steps.determine-version.outputs.GitVersion_AssemblySemFileVer }}
       assembly-informational-version: ${{ steps.determine-version.outputs.GitVersion_InformationalVersion }}
     steps:
-      - name: Install NodeJS
-        run: apk add nodejs npm
-
       - name: Checkout
         uses: actions/checkout@v4
         with:
