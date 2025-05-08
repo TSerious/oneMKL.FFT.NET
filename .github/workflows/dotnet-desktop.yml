@@ -81,7 +81,7 @@ jobs:
 
       - name: Determine Version
         id: determine-version
-        uses: https://github.com/gittools/actions/gitversion/execute@v3.1.1
+        uses: gittools/actions/gitversion/execute@v3.2.1
         with:
           useConfigFile: true
 
