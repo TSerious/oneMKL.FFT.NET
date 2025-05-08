@@ -3,12 +3,12 @@
 namespace oneMKL.FFT.NET
 {
     /// <summary>
-    /// Some utilities for the fft.
+    /// Some utilities for the FFT.
     /// </summary>
     public static class Utils
     {
         /// <summary>
-        /// Converts the packed complex number to an array of complex numbers.
+        /// Converts the packed complex numbers to an array of complex numbers.
         /// </summary>
         /// <param name="packed">The packed complex numbers.</param>
         /// <returns>The unpacked complex numbers.</returns>
