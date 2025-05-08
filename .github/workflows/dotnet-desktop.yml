@@ -152,5 +152,8 @@ jobs:
 
       - name: Publish Package
         shell: pwsh
-        run: dotnet nuget push oneMKL.FFT.NET/bin/oneMKL.FFT.NET.*.nupkg --api-key ${{ secrets.NUGET_PACKAGE_TOKEN }} --source https://nuget.pkg.github.com/TSerious/index.json
+        run: |
+          dotnet nuget push oneMKL.FFT.NET/bin/oneMKL.FFT.NET.${{ needs.determine-version.outputs.version }}.nupkg `
+          --api-key ${{ secrets.NUGET_PACKAGE_TOKEN }} `
+          --source https://nuget.pkg.github.com/TSerious/index.json
 
