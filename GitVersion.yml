@@ -1,0 +1,18 @@
+assembly-file-versioning-format: '{Major}.{Minor}.{env:BUILD_NUMBER ?? 0}'
+assembly-informational-format: '{Major}.{Minor}.{env:BUILD_NUMBER ?? 0}{PreReleaseTagWithDash}'
+
+major-version-bump-message: 'BREAKING( CHANGE)?:\s?(.+)'
+minor-version-bump-message: 'feat:\s?(.+)'
+patch-version-bump-message: 'fix:\s?(.+)'
+
+mode: ContinuousDelivery
+ignore:
+  sha: []
+merge-message-formats: {}
+
+branches:
+  hotfix:
+      track-merge-target: true
+      label: hotfix
+
+update-build-number: true
