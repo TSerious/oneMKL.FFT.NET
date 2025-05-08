@@ -119,7 +119,7 @@ jobs:
         shell: pwsh
         # Overview of the different versions: https://gist.github.com/jonlabelle/34993ee032c26420a0943b1c9d106cdc
         run: |
-          dotnet build`
+          dotnet build `
             oneMKL.FFT.NET/oneMKL.FFT.NET.csproj `
             -p:Version=${{ needs.determine-version.outputs.assembly-sem-file-ver }} `
             -p:FileVersion=${{ needs.determine-version.outputs.assembly-sem-file-ver }} `
