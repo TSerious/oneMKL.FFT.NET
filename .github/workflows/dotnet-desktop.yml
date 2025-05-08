@@ -62,8 +62,13 @@ jobs:
       - name: Install NodeJS
         run: apk add nodejs npm
 
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Install GitVersion
-        uses: https://github.com/gittools/actions/gitversion/setup@v3.1.1
+        uses: gittools/actions/gitversion/setup@v3.2.1
         with:
           versionSpec: '6.0.x'
           preferLatestVersion: true
