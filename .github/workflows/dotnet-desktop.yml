@@ -47,8 +47,6 @@ on:
 env:
   Solution_Name: oneMKL.FFT.NET.sln                        # Replace with your solution name, i.e. MyWpfApp.sln.
   DOTNET_CLI_TELEMETRY_OPTOUT: "true"
-  NODEJS_INSTALL_DIR: "${{ runner.temp }}/.nodejs"
-  DOTNET_INSTALL_DIR: "${{ runner.tool_cache }}/.dotnet"
   BUILD_NUMBER: "${{ github.run_number }}"  # relevant for sem-file-ver from GitVersion (see ./GitVersion.yml)
 
 jobs:
